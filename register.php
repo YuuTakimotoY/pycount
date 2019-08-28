@@ -63,22 +63,33 @@ if(!empty($_POST)){
  
       if(empty($err_msg)){
  
-        //DBへの接続準備
-        $dsn = 'mysql:dbname=pycount;host=localhost;charset=utf8';
-        $user = 'root';
-        $password = 'root';
-        $options = array(
-                // SQL実行失敗時に例外をスロー
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                // デフォルトフェッチモードを連想配列形式に設定
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-                // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-                PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-            );
+        /*//DBへの接続準備
+  $dsn = 'mysql:dbname=pycount;host=localhost;charset=utf8';
+  $user = 'root';
+  $password = 'root';
+  $options = array(
+          // SQL実行失敗時に例外をスロー
+          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+          // デフォルトフェッチモードを連想配列形式に設定
+          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+          // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+          // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+          PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+      );
  
-        // PDOオブジェクト生成（DBへ接続）
-        $dbh = new PDO($dsn, $user, $password, $options);
+  // PDOオブジェクト生成（DBへ接続）
+  $dbh = new PDO($dsn, $user, $password, $options);*/
+  $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+  $db['dbname'] = ltrim($db['path'], '/');
+  $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+  $user = $db['user'];
+  $password = $db['pass'];
+  $options = array(
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
+  );
+  $dbh = new PDO($dsn,$user,$password,$options);
  
         //SQL文（クエリー作成）
         $stmt = $dbh->prepare('INSERT INTO users (user,pass,login_time) VALUES (:user,:pass,:login_time)');
