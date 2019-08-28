@@ -92,7 +92,7 @@ if(!empty($_POST)){
   $dbh = new PDO($dsn,$user,$password,$options);
  
         //SQL文（クエリー作成）
-        $stmt = $dbh->prepare('INSERT INTO users (user,pass,login_time) VALUES (:user,:pass,:login_time)');
+        $stmt = $dbh->prepare('INSERT INTO users2 (user,pass,login_time) VALUES (:user,:pass,:login_time)');
  
         //プレースホルダに値をセットし、SQL文を実行
         $stmt->execute(array(':user' => $users, ':pass' => $pass, ':login_time' => date('Y-m-d H:i:s')));

@@ -114,7 +114,7 @@ if(!empty($_POST)){
         
         <h2>ログイン</h2>
         <div class="form">
-            <form method="post">
+            <form action="" method="post">
             
                 <input type="text" name="user" value="<?php if(!empty($POST['user'])) echo $POST['user']; ?>">
 
