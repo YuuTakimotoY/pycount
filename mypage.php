@@ -26,7 +26,7 @@ if(empty($_SESSION['login'])) header("Location:login.php");
         <ul>
                 <li><a href="index.php">HOME</a></li>
                 <?php
-                    if(!empty($_SESSION['login'])){
+                    if(($_SESSION['login'])==true){
                 ?>
                     <li><a href="logout.php">ログアウト</a></li>
                 <?php
