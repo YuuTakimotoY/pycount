@@ -124,9 +124,9 @@
         <div id="rireki">
             <table align="center" border="1" width="500" cellspacing="0" cellpadding="5" bordercolor="#333333">
                 <tr>
-                    <th style="background:<?php echo 'rgb('.implode($color, ',').')' ?>">ユーザー</th>
-                    <th style="background:<?php echo 'rgb('.implode($color, ',').')' ?>">クリア秒数</th>
-                    <th style="background:<?php echo 'rgb('.implode($color, ',').')' ?>">クリア履歴登録日時</th>
+                    <th style="background:<?php echo 'rgb('.implode(',',$color).')' ?>">ユーザー</th>
+                    <th style="background:<?php echo 'rgb('.implode(',',$color).')' ?>">クリア秒数</th>
+                    <th style="background:<?php echo 'rgb('.implode(',',$color).')' ?>">クリア履歴登録日時</th>
                 </tr>
                 <?php foreach($result as $loop){ ?>
                         <tr>
