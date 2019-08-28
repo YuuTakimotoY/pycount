@@ -44,7 +44,7 @@ if(!empty($_POST)){
   $dbh = new PDO($dsn,$user,$password,$options);
  
   //SQL文（クエリー作成）
-  $stmt = $dbh->prepare('SELECT * FROM users WHERE user = :user AND pass = :pass');
+  $stmt = $dbh->prepare('SELECT * FROM users2 WHERE user = :user AND pass = :pass');
  
   //プレースホルダに値をセットし、SQL文を実行
   $stmt->execute(array(':user' => $users, ':pass' => $pass));
